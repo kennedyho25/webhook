@@ -21,23 +21,35 @@ function getTeamInfo(req,res)
     if (err)
     {
       return res.json({
-        speech: 'Something went wrong!',
-        displayText: 'Something went wrong!',
+        fulfillmentText: 'Something went wrong!',
+        fulfillmentMessages: [{
+          text: [
+            'Something went wrong!'
+          ]
+        }],
         source: 'team info'
       });
     }
     if (teamExists)
     {
       return res.json({
-        speech: teamExists.description,
-        displayText: teamExists.description,
+        fulfillmentText: teamExists.description,
+        fulfillmentMessages: [{
+          text: [
+            teamExists.description
+          ]
+        }],
         source: 'team info'
       });
     }
     else {
       return res.json({
-        speech: 'Currently I am not having information about this team',
-        displayText: 'Currently I am not having information about this team',
+        fulfillmentText: 'Currently I am not having information about this team',
+        fulfillmentMessages: [{
+          text: [
+            'Currently I am not having information about this team'
+          ]
+        }],
         source: 'team info'
       });
     }
@@ -61,8 +73,12 @@ function getTeamSchedule(req,res)
         if (err)
         {
           return res.json({
-            speech: 'Something went wrong!',
-            displayText: 'Something went wrong!',
+            fulfillmentText: 'Something went wrong!',
+            fulfillmentMessages: [{
+              text: [
+                'Something went wrong!'
+              ]
+            }],
             source: 'game schedule'
           });
         }
@@ -93,8 +109,12 @@ function getTeamSchedule(req,res)
                   winningStatement = "Kings lost this match by " + requiredGame.score;
                 }
                 return res.json({
-                  speech: 'Last game between Kings and ' + parameters.team + ' was played on ' + requiredGame.date + ' .' + winningStatement,
-                  displayText: 'Last game between Kings and ' + parameters.team + ' was played on ' + requiredGame.date + ' .' + winningStatement,
+                  fulfillmentText: 'Last game between Kings and ' + parameters.team + ' was played on ' + requiredGame.date + ' .' + winningStatement,
+                  fulfillmentMessages: [{
+                    text: [
+                      'Last game between Kings and ' + parameters.team + ' was played on ' + requiredGame.date + ' .' + winningStatement
+                    ]
+                  }],
                   source: 'game schedule'
                 });
 
@@ -102,8 +122,12 @@ function getTeamSchedule(req,res)
               }
               else {
                 return res.json({
-                  speech: 'Cant find any previous game played between Kings and ' + parameters.team,
-                  displayText: 'Cant find any previous game played between Kings and ' + parameters.team,
+                  fulfillmentText: 'Cant find any previous game played between Kings and ' + parameters.team,
+                  fulfillmentMessages: [{
+                    text: [
+                      'Cant find any previous game played between Kings and ' + parameters.team
+                    ]
+                  }],
                   source: 'game schedule'
                 });
               }
@@ -115,16 +139,24 @@ function getTeamSchedule(req,res)
     else 
     {
       return res.json({
-        speech: 'Next game schedules will be available soon',
-        displayText: 'Next game schedules will be available soon',
+        fulfillmentText: 'Next game schedules will be available soon',
+        fulfillmentMessages: [{
+          text: [
+            'Next game schedules will be available soon'
+          ]
+        }],
         source: 'game schedule'
       });
     }
   }
   else {
     return res.json({
-      speech: 'Cant handle the queries with two teams now. I will update myself',
-      displayText: 'Cant handle the queries with two teams now. I will update myself',
+      fulfillmentText: 'Cant handle the queries with two teams now. I will update myself',
+      fulfillmentMessages: [{
+          text: [
+            'Cant handle the queries with two teams now. I will update myself'
+          ]
+        }],
       source: 'game schedule'
     });
   }
